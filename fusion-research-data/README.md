@@ -1,4 +1,4 @@
-# Fusion Research Data
+# Fusion Research Data (Invenio RDM v10.0)
 
 Welcome to your InvenioRDM instance.
 
