@@ -1,0 +1,87 @@
+version: '2.2'
+services:
+  app:
+    build:
+      context: ./
+      args:
+        - ENVIRONMENT=DEV
+    image: fusion-research-data
+    restart: "unless-stopped"
+    environment:
+      - "INVENIO_ACCOUNTS_SESSION_REDIS_URL=redis://cache:6379/1"
+      - "INVENIO_BROKER_URL=amqp://guest:guest@mq:5672/"
+      - "INVENIO_CACHE_REDIS_URL=redis://cache:6379/0"
+      - "INVENIO_CACHE_TYPE=redis"
+      - "INVENIO_CELERY_BROKER_URL=amqp://guest:guest@mq:5672/"
+      - "INVENIO_CELERY_RESULT_BACKEND=redis://cache:6379/2"
+      - "INVENIO_SEARCH_HOSTS=['search:9200']"
+      - "INVENIO_SECRET_KEY=CHANGE_ME"
+      - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://fusion-research-data:fusion-research-data@db/fusion-research-data"
+      - "INVENIO_WSGI_PROXIES=2"
+      - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
+  frontend:
+    build: ./docker/nginx/
+    image: fusion-research-data-frontend
+    restart: "unless-stopped"
+    ports:
+      - "80"
+      - "443"
+  cache:
+    image: redis:7
+    restart: "unless-stopped"
+    read_only: true
+    ports:
+      - "6379:6379"
+  db:
+    image: postgres:12.4
+    restart: "unless-stopped"
+    environment:
+      - "POSTGRES_USER=fusion-research-data"
+      - "POSTGRES_PASSWORD=fusion-research-data"
+      - "POSTGRES_DB=fusion-research-data"
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4:5.2
+    restart: "unless-stopped"
+    ports:
+      - "5050:80"
+      - "5051:443"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "fran.jurinec@helsinki.fi"
+      PGADMIN_DEFAULT_PASSWORD: "fusion-research-data"
+    volumes:
+      - ./docker/pgadmin/servers.json:/pgadmin4/servers.json
+  mq:
+    image: rabbitmq:3-management
+    restart: "unless-stopped"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  search:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    restart: "unless-stopped"
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:9200/_cluster/health?wait_for_status=green"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 2g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.10.2
+    environment:
+      - "ELASTICSEARCH_HOSTS=http://search:9200"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "5601:5601"

@@ -1,0 +1,36 @@
+[cli]
+flavour = RDM
+logfile = /logs/invenio-cli.log
+
+[cookiecutter]
+project_name = Fusion Research Data
+project_shortname = fusion-research-data
+project_site = demo-fusion-data-platform.rahtiapp.fi
+github_repo = franjurinec/fusion-invenio-demo
+description = Fusion Research Data InvenioRDM Instance
+author_name = Fran Jurinec
+author_email = fran.jurinec@helsinki.fi
+year = 2023
+python_version = 3.9
+database = postgresql
+search = elasticsearch7
+file_storage = local
+development_tools = yes
+_template = https://github.com/inveniosoftware/cookiecutter-invenio-rdm.git
+
+[files]
+docker-compose.full.yml = 6933330901fbf3dece9a0105e679ac4214d217a06201f419d0795d6d053e98e0
+pipfile = b9a0ab2c3cd54f9dc518c2ce039d689723fbe740c20211cbd6de303185cb7371
+.gitignore = af1182c70588e583daeb35809e6cdfe3408425d438c3ceb282b1f4b8360290e2
+dockerfile = 400c5101e04ba50998796843c774389212ffb76f64adcd27834b411eaafed674
+app_data = {'vocabularies': {'affiliations_ror.yaml': '2e913fbecacd3694cba1b9a10739164911c2d45db3b32f1cb923027c48e0ac3e', 'subjects_oecd_fos.yaml': 'eef38714c506d956193c3be17e6004049525d252bf22424f4804dfc1ad46db44'}, 'vocabularies.yaml': '21218eeb7c8c08918e242d1ea8110328e37d7cd891ccc7ee142b6f4aba34ba08', 'README.md': 'd58978488626bdeddc791a15a39e341a4ed06f202b84d0c0d4aa9ef49481c6d9'}
+templates = {'.gitkeep': 'd4756cdf68d94c670c924f9d57d44718f666e457727701486435b57a97e52c5f'}
+static = {'images': {'logo-invenio-white.svg': '5af2c7b67a09798cba3d50cc2e811ca9fd2ff73b40d9d2a52a97237b9ed44008', 'invenio-rdm.svg': '50f09b4d83244a69c58f44aa436a3fa097726d9b47fd0e0782ea92d31f854b65'}}
+assets = {'templates': {'search': {'.gitkeep': 'd4756cdf68d94c670c924f9d57d44718f666e457727701486435b57a97e52c5f'}, 'custom_fields': {'.gitkeep': 'd4756cdf68d94c670c924f9d57d44718f666e457727701486435b57a97e52c5f'}}, 'less': {'site': {'globals': {'site.overrides': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'site.variables': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}}, 'theme.config': 'ee68441b779400585a3a1ed4445ab5727e3a47a09aa708976dd506c0e081f0d8'}}
+docker-compose.yml = 0fb07cc94e562071f2564b3cff1958817838222fca4a9c38856ea0bc15ac16e9
+docker-services.yml = b2b3c4a0aa4773612c9e69c50caef62ae9398bf6b1f8e81faae38a14bb445533
+docker = {'pgadmin': {'servers.json': '1a538483c2f7f8550406440632a791e06f4114d432285d27515f8171531e5e43'}, 'uwsgi': {'uwsgi_rest.ini': 'c36fc5021baf15f375b3b6c825f7753e5d166319c5fe38a85b604391ce5b37b6', 'uwsgi_ui.ini': 'c80168dc8d29086b876caab41b5057fddef46bdc748c5ecf213f684aa73cc90c'}, 'nginx': {'conf.d': {'default.conf': '9397770d56124ae53848e300bdf976d55653c47fbf8d47a7dc8c3ee2b830e6d5'}, 'Dockerfile': '541326766beaba2e8492255c99e11aa76640d71329ceab5bcab1c8d6a979bd5c', 'nginx.conf': '6c9a6e372fc340dfcd3b49e6a30bd7bd36af41d79d1d093b7b3ba5f4c9d781b4', 'test.crt': '58c34d04a2282a68edcd35cae517f152ffe822995b90321a687eed346552256f', 'test.key': 'c4246695adf8da3c2b8c4c399f4fdb5a6b2c258eba21525509d96826d0fc2f84'}}
+.dockerignore = 21241bc12cdf4ac5f209d6b191adc8f25eb89af93ce5c4c3f72c86661162d7b5
+readme.md = 445bc14dbf0446244fc7c92b8a6197eb0e14bb2deef50ba52b8249e9c40214f5
+invenio.cfg = 7a747a3fd5d7e4eaecdf581c6c10fa60a18499584a1966b6b7858b7e63da23f7
+
