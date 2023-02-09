@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "fusion-invenio-v11-db",
+      "Group": "Servers",
+      "Host": "fusion-invenio-v11-db-1",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "fusion-invenio-v11",
+      "SSLMode": "prefer"
+    }
+  }
+}
